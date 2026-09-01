@@ -1,0 +1,15 @@
+{
+  "fullName": "Valentina Rojas Fuentes",
+  "email": "valentina.rojas@example.com",
+  "phone": "+56 9 8765 4321",
+  "location": "Santiago, Chile",
+  "summary": "Analista de datos especializada en métricas de crecimiento, experimentación y visualización para empresas SaaS.",
+  "skills": ["Python", "SQL", "Power BI", "dbt", "BigQuery"],
+  "yearsExperience": 5,
+  "titles": ["Analista de Datos", "Especialista de Business Intelligence"],
+  "groundTruth": {
+    "expectedSkills": ["Python", "SQL", "Power BI", "dbt", "BigQuery"],
+    "expectedYears": 5,
+    "redFlags": []
+  }
+}

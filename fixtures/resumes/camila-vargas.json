@@ -1,0 +1,15 @@
+{
+  "fullName": "Camila Vargas Salazar",
+  "email": "camila.vargas@example.com",
+  "phone": "+51 987 654 210",
+  "location": "Lima, Perú",
+  "summary": "Científica de datos especializada en modelos de riesgo crediticio y comunicación de resultados a áreas de negocio.",
+  "skills": ["Python", "Pandas", "scikit-learn", "SQL", "MLflow"],
+  "yearsExperience": 6,
+  "titles": ["Científica de Datos", "Machine Learning Engineer"],
+  "groundTruth": {
+    "expectedSkills": ["Python", "Pandas", "scikit-learn", "SQL", "MLflow"],
+    "expectedYears": 6,
+    "redFlags": []
+  }
+}

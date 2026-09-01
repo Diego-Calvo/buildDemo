@@ -1,0 +1,15 @@
+{
+  "fullName": "Natalia Rivera Colón",
+  "email": "natalia.rivera@example.com",
+  "phone": "+1 787 555 0142",
+  "location": "San Juan, Puerto Rico",
+  "summary": "Gerente de producto con experiencia lanzando herramientas B2B y definiendo hojas de ruta basadas en evidencia.",
+  "skills": ["Product Strategy", "Roadmapping", "A/B Testing", "Analytics", "User Research"],
+  "yearsExperience": 7,
+  "titles": ["Product Manager", "Product Owner"],
+  "groundTruth": {
+    "expectedSkills": ["Product Strategy", "Roadmapping", "A/B Testing", "Analytics", "User Research"],
+    "expectedYears": 7,
+    "redFlags": []
+  }
+}

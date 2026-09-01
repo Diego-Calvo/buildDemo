@@ -1,0 +1,15 @@
+{
+  "fullName": "Lucía Fernández Bianchi",
+  "email": "lucia.fernandez@example.com",
+  "phone": "+54 11 4567-8901",
+  "location": "Buenos Aires, Argentina",
+  "summary": "Diseñadora de producto digital con experiencia en investigación de usuarios y sistemas de diseño para fintech.",
+  "skills": ["Figma", "UX Research", "Design Systems", "Prototyping", "Accessibility"],
+  "yearsExperience": 6,
+  "titles": ["Product Designer", "Diseñadora UX/UI"],
+  "groundTruth": {
+    "expectedSkills": ["Figma", "UX Research", "Design Systems", "Prototyping", "Accessibility"],
+    "expectedYears": 6,
+    "redFlags": []
+  }
+}

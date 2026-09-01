@@ -1,0 +1,15 @@
+{
+  "fullName": "Gabriela Núñez Batista",
+  "email": "gabriela.nunez@example.com",
+  "phone": "+507 6678-2145",
+  "location": "Ciudad de Panamá, Panamá",
+  "summary": "Especialista en calidad de software con experiencia diseñando estrategias de pruebas para plataformas de seguros.",
+  "skills": ["Cypress", "Playwright", "JavaScript", "API Testing", "Postman"],
+  "yearsExperience": 5,
+  "titles": ["QA Automation Engineer", "Analista de Calidad"],
+  "groundTruth": {
+    "expectedSkills": ["Cypress", "Playwright", "JavaScript", "API Testing", "Postman"],
+    "expectedYears": 5,
+    "redFlags": []
+  }
+}

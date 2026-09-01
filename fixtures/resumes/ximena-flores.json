@@ -1,0 +1,15 @@
+{
+  "fullName": "Ximena Flores Contreras",
+  "email": "ximena.flores@example.com",
+  "phone": "+58 412-555-7630",
+  "location": "Caracas, Venezuela",
+  "summary": "Ingeniera de datos con experiencia desarrollando canalizaciones para analítica comercial y gobierno de información.",
+  "skills": ["Python", "Apache Spark", "Airflow", "Snowflake", "Data Modeling"],
+  "yearsExperience": 6,
+  "titles": ["Ingeniera de Datos", "ETL Developer"],
+  "groundTruth": {
+    "expectedSkills": ["Python", "Apache Spark", "Airflow", "Snowflake", "Data Modeling"],
+    "expectedYears": 6,
+    "redFlags": []
+  }
+}

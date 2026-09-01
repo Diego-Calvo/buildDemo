@@ -1,0 +1,15 @@
+{
+  "fullName": "Martín Pereira Sosa",
+  "email": "martin.pereira@example.com",
+  "phone": "+598 99 345 761",
+  "location": "Montevideo, Uruguay",
+  "summary": "Ingeniero backend con experiencia construyendo APIs escalables para logística y procesamiento de pedidos.",
+  "skills": ["Go", "REST APIs", "PostgreSQL", "Redis", "Docker"],
+  "yearsExperience": 5,
+  "titles": ["Backend Engineer", "Desarrollador Go"],
+  "groundTruth": {
+    "expectedSkills": ["Go", "REST APIs", "PostgreSQL", "Redis", "Docker"],
+    "expectedYears": 5,
+    "redFlags": []
+  }
+}

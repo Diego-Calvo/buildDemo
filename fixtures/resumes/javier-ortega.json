@@ -1,0 +1,15 @@
+{
+  "fullName": "Javier Ortega Mairena",
+  "email": "javier.ortega@example.com",
+  "phone": "+505 8855 2910",
+  "location": "Managua, Nicaragua",
+  "summary": "Ingeniero de soporte cloud con experiencia resolviendo incidentes críticos y documentando operaciones de servicio.",
+  "skills": ["Azure", "PowerShell", "Networking", "ITIL", "Kusto"],
+  "yearsExperience": 5,
+  "titles": ["Cloud Support Engineer", "Analista de Operaciones"],
+  "groundTruth": {
+    "expectedSkills": ["Azure", "PowerShell", "Networking", "ITIL", "Kusto"],
+    "expectedYears": 5,
+    "redFlags": []
+  }
+}

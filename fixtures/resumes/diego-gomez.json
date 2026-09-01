@@ -1,0 +1,15 @@
+{
+  "fullName": "Diego Alejandro Gómez",
+  "email": "diego.gomez@example.com",
+  "phone": "+57 315 555 0184",
+  "location": "Medellín, Colombia",
+  "summary": "Ingeniero DevOps con trayectoria automatizando despliegues y mejorando la observabilidad de servicios financieros.",
+  "skills": ["Kubernetes", "Terraform", "Azure", "GitHub Actions", "Prometheus"],
+  "yearsExperience": 7,
+  "titles": ["Ingeniero DevOps", "Ingeniero de Plataforma"],
+  "groundTruth": {
+    "expectedSkills": ["Kubernetes", "Terraform", "Azure", "GitHub Actions", "Prometheus"],
+    "expectedYears": 7,
+    "redFlags": []
+  }
+}

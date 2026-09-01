@@ -1,0 +1,15 @@
+{
+  "fullName": "Sofía Benítez Acosta",
+  "email": "sofia.benitez@example.com",
+  "phone": "+595 981 445 230",
+  "location": "Asunción, Paraguay",
+  "summary": "Desarrolladora móvil orientada a aplicaciones de banca digital con énfasis en calidad y rendimiento.",
+  "skills": ["Kotlin", "Android", "Jetpack Compose", "Firebase", "JUnit"],
+  "yearsExperience": 4,
+  "titles": ["Desarrolladora Android", "Ingeniera Mobile"],
+  "groundTruth": {
+    "expectedSkills": ["Kotlin", "Android", "Jetpack Compose", "Firebase", "JUnit"],
+    "expectedYears": 4,
+    "redFlags": []
+  }
+}

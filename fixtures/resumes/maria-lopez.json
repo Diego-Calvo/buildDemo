@@ -1,0 +1,15 @@
+{
+  "fullName": "María Fernanda López",
+  "email": "maria.lopez@example.com",
+  "phone": "+502 5552 1840",
+  "location": "Ciudad de Guatemala, Guatemala",
+  "summary": "Gerente de proyectos tecnológicos con experiencia coordinando implementaciones regionales y equipos multidisciplinarios.",
+  "skills": ["Scrum", "Jira", "Risk Management", "Stakeholder Management", "Agile"],
+  "yearsExperience": 10,
+  "titles": ["Gerente de Proyectos", "Scrum Master"],
+  "groundTruth": {
+    "expectedSkills": ["Scrum", "Jira", "Risk Management", "Stakeholder Management", "Agile"],
+    "expectedYears": 10,
+    "redFlags": []
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "fullName": "Carlos Mendoza Ramírez",
+  "email": "mendoza.cv@example.com",
+  "phone": "+52 55 2345 6789",
+  "location": "Ciudad de México, México",
+  "summary": "Desarrollador full stack enfocado en productos de comercio electrónico y experiencias web accesibles.",
+  "skills": ["TypeScript", "React", "Node.js", "MongoDB", "GraphQL"],
+  "yearsExperience": 6,
+  "titles": ["Desarrollador Full Stack", "Ingeniero de Software"],
+  "groundTruth": {
+    "expectedSkills": ["TypeScript", "React", "Node.js", "MongoDB", "GraphQL"],
+    "expectedYears": 6,
+    "redFlags": []
+  }
+}

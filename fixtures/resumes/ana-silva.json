@@ -1,0 +1,15 @@
+{
+  "fullName": "Ana Beatriz Silva",
+  "email": "ana.silva@example.com",
+  "phone": "+55 11 99876-4321",
+  "location": "São Paulo, Brasil",
+  "summary": "Engenheira de software com experiência em plataformas de pagamentos e liderança técnica de equipes ágeis.",
+  "skills": ["Java", "Spring Boot", "AWS", "PostgreSQL", "Docker"],
+  "yearsExperience": 8,
+  "titles": ["Engenheira de Software Sênior", "Líder Técnica"],
+  "groundTruth": {
+    "expectedSkills": ["Java", "Spring Boot", "AWS", "PostgreSQL", "Docker"],
+    "expectedYears": 8,
+    "redFlags": []
+  }
+}

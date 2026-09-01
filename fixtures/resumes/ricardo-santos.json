@@ -1,0 +1,15 @@
+{
+  "fullName": "Ricardo Santos Oliveira",
+  "email": "ricardo.santos@example.com",
+  "phone": "+55 21 99123-6677",
+  "location": "Rio de Janeiro, Brasil",
+  "summary": "Arquiteto de soluções com experiência em modernização de sistemas legados e adoção de arquiteturas orientadas a eventos.",
+  "skills": ["AWS", "Microservices", "Kafka", "Java", "Domain-Driven Design"],
+  "yearsExperience": 12,
+  "titles": ["Arquiteto de Soluções", "Engenheiro de Software Principal"],
+  "groundTruth": {
+    "expectedSkills": ["AWS", "Microservices", "Kafka", "Java", "Domain-Driven Design"],
+    "expectedYears": 12,
+    "redFlags": []
+  }
+}

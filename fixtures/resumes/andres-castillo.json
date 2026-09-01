@@ -1,0 +1,15 @@
+{
+  "fullName": "Andrés Castillo Mora",
+  "email": "andres.castillo@example.com",
+  "phone": "+506 8701 2244",
+  "location": "San José, Costa Rica",
+  "summary": "Especialista en ciberseguridad dedicado a respuesta a incidentes, gestión de vulnerabilidades y seguridad en la nube.",
+  "skills": ["SIEM", "Incident Response", "Python", "AWS Security", "ISO 27001"],
+  "yearsExperience": 7,
+  "titles": ["Analista de Ciberseguridad", "Security Engineer"],
+  "groundTruth": {
+    "expectedSkills": ["SIEM", "Incident Response", "Python", "AWS Security", "ISO 27001"],
+    "expectedYears": 7,
+    "redFlags": []
+  }
+}

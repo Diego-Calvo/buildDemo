@@ -1,0 +1,15 @@
+{
+  "fullName": "José Luis Quishpe",
+  "email": "jose.quishpe@example.com",
+  "phone": "+593 99 345 6721",
+  "location": "Quito, Ecuador",
+  "summary": "Administrador de bases de datos con experiencia en alta disponibilidad, recuperación ante desastres y optimización.",
+  "skills": ["PostgreSQL", "Oracle", "SQL Server", "Linux", "Ansible"],
+  "yearsExperience": 9,
+  "titles": ["Administrador de Bases de Datos", "Consultor de Infraestructura"],
+  "groundTruth": {
+    "expectedSkills": ["PostgreSQL", "Oracle", "SQL Server", "Linux", "Ansible"],
+    "expectedYears": 9,
+    "redFlags": []
+  }
+}

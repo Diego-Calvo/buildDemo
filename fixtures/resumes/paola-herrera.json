@@ -1,0 +1,15 @@
+{
+  "fullName": "Paola Herrera Mejía",
+  "email": "paola.herrera@example.com",
+  "phone": "+504 9876-3021",
+  "location": "Tegucigalpa, Honduras",
+  "summary": "Consultora funcional con experiencia implementando soluciones ERP para manufactura y distribución.",
+  "skills": ["SAP S/4HANA", "Business Analysis", "Process Mapping", "SQL", "UAT"],
+  "yearsExperience": 9,
+  "titles": ["Consultora Funcional SAP", "Analista de Negocios"],
+  "groundTruth": {
+    "expectedSkills": ["SAP S/4HANA", "Business Analysis", "Process Mapping", "SQL", "UAT"],
+    "expectedYears": 9,
+    "redFlags": []
+  }
+}

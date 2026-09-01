@@ -1,0 +1,15 @@
+{
+  "fullName": "Fernando Reyes Aguilar",
+  "email": "fernando.reyes@example.com",
+  "phone": "+503 7012 9988",
+  "location": "San Salvador, El Salvador",
+  "summary": "Administrador de sistemas con experiencia operando infraestructura Linux y servicios de alta disponibilidad.",
+  "skills": ["Linux", "Bash", "Nginx", "Docker", "Zabbix"],
+  "yearsExperience": 8,
+  "titles": ["Administrador de Sistemas", "Ingeniero de Infraestructura"],
+  "groundTruth": {
+    "expectedSkills": ["Linux", "Bash", "Nginx", "Docker", "Zabbix"],
+    "expectedYears": 8,
+    "redFlags": []
+  }
+}

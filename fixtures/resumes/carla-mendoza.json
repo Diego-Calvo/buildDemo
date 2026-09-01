@@ -1,0 +1,15 @@
+{
+  "fullName": "Carla Mendoza Ramírez",
+  "email": "mendoza.cv@example.com",
+  "phone": "+52 81 3456 9021",
+  "location": "Monterrey, México",
+  "summary": "Ingeniera de automatización con experiencia integrando sistemas industriales y tableros de monitoreo en tiempo real.",
+  "skills": ["Python", "PLC", "SCADA", "MQTT", "Industrial IoT"],
+  "yearsExperience": 5,
+  "titles": ["Ingeniera de Automatización", "Ingeniera de Control"],
+  "groundTruth": {
+    "expectedSkills": ["Python", "PLC", "SCADA", "MQTT", "Industrial IoT"],
+    "expectedYears": 5,
+    "redFlags": ["duplicate_email"]
+  }
+}

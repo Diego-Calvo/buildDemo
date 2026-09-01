@@ -1,0 +1,361 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  COORDINATOR
+  RECRUITER
+  HIRING_MANAGER
+  INTERVIEWER
+  PAYROLL
+  LEADER
+  ADMIN
+}
+
+enum RequisitionStatus {
+  DRAFT
+  OPEN
+  ON_HOLD
+  FILLED
+  CANCELLED
+}
+
+enum CandidateSource {
+  EMAIL_INBOX
+  REFERRAL
+  LINKEDIN
+  CAREERS_SITE
+}
+
+enum ScanStatus {
+  PENDING
+  CLEAN
+  QUARANTINED
+}
+
+enum ApplicationStage {
+  RECEIVED
+  TRIAGED
+  RESUME_VALIDATED
+  MATCHED
+  RECRUITER_SCREEN
+  HM_REVIEW
+  INTERVIEWING
+  DECISION
+  OFFER_DRAFT
+  OFFER_PAYROLL_APPROVAL
+  OFFER_SENT
+  HIRED
+  REJECTED
+  WITHDRAWN
+  ON_HOLD
+}
+
+enum HiringDecision {
+  HIRE
+  NO_HIRE
+  WITHDRAWN
+}
+
+enum InterviewType {
+  PHONE_SCREEN
+  TECHNICAL
+  HM
+  PANEL
+  FINAL
+}
+
+enum InterviewStatus {
+  SCHEDULED
+  COMPLETED
+  NO_SHOW
+  CANCELLED
+}
+
+enum Recommendation {
+  STRONG_HIRE
+  HIRE
+  NO_HIRE
+  STRONG_NO_HIRE
+}
+
+enum OfferStatus {
+  DRAFT
+  PENDING_PAYROLL
+  APPROVED
+  REJECTED
+  SENT
+  ACCEPTED
+  DECLINED
+}
+
+enum ActorType {
+  HUMAN
+  SYSTEM
+}
+
+enum AutomationStatus {
+  RUNNING
+  SUCCESS
+  WARNING
+  FAILED
+}
+
+enum AITask {
+  PARSE
+  MATCH
+  REDFLAG
+}
+
+model User {
+  id                    String                   @id
+  name                  String
+  email                 String                   @unique
+  role                  Role
+  title                 String
+  approvedTemplates     JobDescriptionTemplate[] @relation("TemplateApprover")
+  managedRequisitions   Requisition[]            @relation("HiringManager")
+  recruitedRequisitions Requisition[]            @relation("RequisitionRecruiter")
+  ownedApplications     Application[]            @relation("ApplicationOwner")
+  validatedResumes      Resume[]                 @relation("ResumeValidator")
+  decisions             Application[]            @relation("DecisionMaker")
+  interviews            Interview[]              @relation("Interviewer")
+  payrollReviews        OfferPackage[]           @relation("PayrollReviewer")
+  stageEvents           StageEvent[]
+  auditLogs             AuditLog[]
+  notifications         Notification[]
+}
+
+model Department {
+  id              String        @id
+  name            String        @unique
+  headcountTarget Int
+  requisitions    Requisition[]
+}
+
+model JobDescriptionTemplate {
+  id               String        @id
+  family           String
+  level            String
+  title            String
+  summary          String
+  responsibilities Json
+  mustHave         Json
+  niceToHave       Json
+  compBandMin      Int
+  compBandMax      Int
+  currency         String        @default("USD")
+  version          Int
+  approvedById     String?
+  approvedAt       DateTime?
+  approvedBy       User?         @relation("TemplateApprover", fields: [approvedById], references: [id])
+  requisitions     Requisition[]
+}
+
+model Requisition {
+  id              String                 @id
+  code            String                 @unique
+  title           String
+  departmentId    String
+  hiringManagerId String
+  recruiterId     String
+  templateId      String
+  status          RequisitionStatus
+  openedAt        DateTime?
+  targetStartDate DateTime
+  priority        String
+  location        String
+  openingsCount   Int
+  department      Department             @relation(fields: [departmentId], references: [id])
+  hiringManager   User                   @relation("HiringManager", fields: [hiringManagerId], references: [id])
+  recruiter       User                   @relation("RequisitionRecruiter", fields: [recruiterId], references: [id])
+  template        JobDescriptionTemplate @relation(fields: [templateId], references: [id])
+  applications    Application[]
+}
+
+model Candidate {
+  id             String          @id
+  fullName       String
+  email          String
+  phone          String
+  location       String
+  source         CandidateSource
+  consentGiven   Boolean
+  consentAt      DateTime?
+  retentionUntil DateTime
+  createdAt      DateTime        @default(now())
+  resumes        Resume[]
+  applications   Application[]
+}
+
+model Resume {
+  id             String     @id
+  candidateId    String
+  fileName       String
+  mimeType       String
+  sizeBytes      Int
+  sha256         String
+  scanStatus     ScanStatus
+  parsedText     String
+  parsedSkills   Json
+  parsedYearsExp Float
+  parsedTitles   Json
+  redFlags       Json
+  aiConfidence   Float
+  validatedById  String?
+  validatedAt    DateTime?
+  candidate      Candidate  @relation(fields: [candidateId], references: [id])
+  validatedBy    User?      @relation("ResumeValidator", fields: [validatedById], references: [id])
+}
+
+model Application {
+  id               String            @id
+  candidateId      String
+  requisitionId    String?
+  stage            ApplicationStage
+  previousStage    ApplicationStage?
+  stageEnteredAt   DateTime
+  ownerId          String
+  matchScore       Int?
+  matchRationale   String?
+  matchSuggestions Json?
+  decision         HiringDecision?
+  decisionById     String?
+  decisionAt       DateTime?
+  decisionReason   String?
+  candidate        Candidate         @relation(fields: [candidateId], references: [id])
+  requisition      Requisition?      @relation(fields: [requisitionId], references: [id])
+  owner            User              @relation("ApplicationOwner", fields: [ownerId], references: [id])
+  decisionBy       User?             @relation("DecisionMaker", fields: [decisionById], references: [id])
+  interviews       Interview[]
+  offer            OfferPackage?
+  stageEvents      StageEvent[]
+}
+
+model Interview {
+  id            String          @id
+  applicationId String
+  type          InterviewType
+  scheduledAt   DateTime
+  durationMin   Int
+  interviewerId String
+  status        InterviewStatus
+  application   Application     @relation(fields: [applicationId], references: [id])
+  interviewer   User            @relation("Interviewer", fields: [interviewerId], references: [id])
+  scorecard     Scorecard?
+}
+
+model Scorecard {
+  id                String         @id
+  interviewId       String         @unique
+  overallRating     Int
+  recommendation    Recommendation
+  competencyRatings Json
+  notes             String
+  submittedAt       DateTime
+  interview         Interview      @relation(fields: [interviewId], references: [id])
+}
+
+model OfferPackage {
+  id                String      @id
+  applicationId     String      @unique
+  baseSalary        Int
+  bonusPct          Float
+  equity            Int
+  signOn            Int
+  startDate         DateTime
+  currency          String
+  withinBand        Boolean
+  justification     String?
+  status            OfferStatus
+  payrollReviewerId String?
+  payrollDecisionAt DateTime?
+  payrollComment    String?
+  application       Application @relation(fields: [applicationId], references: [id])
+  payrollReviewer   User?       @relation("PayrollReviewer", fields: [payrollReviewerId], references: [id])
+}
+
+model StageEvent {
+  id            String            @id
+  applicationId String
+  fromStage     ApplicationStage?
+  toStage       ApplicationStage
+  actorId       String?
+  actorType     ActorType
+  reason        String
+  createdAt     DateTime          @default(now())
+  application   Application       @relation(fields: [applicationId], references: [id])
+  actor         User?             @relation(fields: [actorId], references: [id])
+}
+
+model AuditLog {
+  id           String    @id
+  entityType   String
+  entityId     String
+  action       String
+  actorId      String?
+  actorType    ActorType
+  before       Json?
+  after        Json?
+  ipOrJob      String
+  previousHash String
+  hash         String
+  createdAt    DateTime  @default(now())
+  actor        User?     @relation(fields: [actorId], references: [id])
+}
+
+model SlaPolicy {
+  id               String  @id
+  name             String
+  stageFrom        String
+  stageTo          String
+  targetHours      Int
+  businessDaysOnly Boolean
+  warnAtPct        Int     @default(75)
+}
+
+model AutomationRun {
+  id             String           @id
+  jobName        String
+  startedAt      DateTime
+  finishedAt     DateTime?
+  status         AutomationStatus
+  itemsProcessed Int
+  warnings       Json
+}
+
+model AIEvaluation {
+  id                String   @id
+  provider          String
+  task              AITask
+  sampleSize        Int
+  precision         Float
+  recall            Float
+  humanOverrideRate Float
+  avgLatencyMs      Int
+  estCostUsd        Float
+  evaluatedAt       DateTime @default(now())
+}
+
+model Notification {
+  id        String    @id
+  userId    String
+  title     String
+  body      String
+  severity  String
+  href      String
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id])
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
