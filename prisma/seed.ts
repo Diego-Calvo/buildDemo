@@ -211,8 +211,8 @@ async function main() {
     const candidateId = `candidate-${String(index + 1).padStart(3, "0")}`;
     const applicationId = `application-${String(index + 1).padStart(3, "0")}`;
     const name = `${candidateFirstNames[index % candidateFirstNames.length]} ${candidateLastNames[Math.floor(index / 10)]}`;
-    const createdAt = dateAgo((index < 6 ? 18 : index < 14 ? 6 : 1 + (index % 4)) * day);
-    const stageEnteredAt = dateAgo((index < 6 ? 12 : index < 14 ? 5.5 : 0.5 + (index % 3)) * day);
+    const createdAt = dateAgo((index < 8 ? 18 : index < 16 ? 6 : 1 + (index % 4)) * day);
+    const stageEnteredAt = dateAgo((index < 8 ? 12 : index < 16 ? 5.5 : 0.5 + (index % 3)) * day);
     const isQuarantined = index < 2;
     const isDuplicate = index === 2;
     const isPromptInjection = index === 1;
