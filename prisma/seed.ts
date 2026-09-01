@@ -217,7 +217,7 @@ async function main() {
     const isDuplicate = index === 2;
     const isPromptInjection = index === 1;
     const reqIndex = index % 18;
-    const ownerId = ["recruiter-valentina", "recruiter-ana", "recruiter-luis", "recruiter-julieta", "recruiter-gabriel"][index % 5];
+    const ownerId = ["recruiter-valentina", "recruiter-ana", "recruiter-luis", "recruiter-julieta", "recruiter-gabriel"][reqIndex % 5];
     const currentSkills = skillsByTemplate[templateIndex];
     const redFlags = isPromptInjection
       ? [{ severity: "BLOCKING", code: "PROMPT_INJECTION", message: "Embedded instruction to ignore previous instructions." }]
