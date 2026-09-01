@@ -1,23 +1,10 @@
-import { Role, type ApplicationStage } from "@prisma/client";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { transitionApplication } from "@/app/actions";
-import { Card, MetricCard, PageHeader, SlaChip, StageBadge, TimeInStage } from "@/components/ui";
+import { RequisitionKanban } from "@/components/requisition-kanban";
+import { Card, MetricCard, PageHeader } from "@/components/ui";
 import { getCurrentUser, requisitionScope } from "@/lib/authz";
 import { db } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
-
-const columns: ApplicationStage[] = [
-  "MATCHED",
-  "RECRUITER_SCREEN",
-  "HM_REVIEW",
-  "INTERVIEWING",
-  "DECISION",
-  "OFFER_DRAFT",
-  "OFFER_PAYROLL_APPROVAL",
-  "OFFER_SENT",
-];
 
 export default async function RequisitionDetailPage({ params }: { params: { id: string } }) {
   const user = await getCurrentUser();
@@ -53,42 +40,20 @@ export default async function RequisitionDetailPage({ params }: { params: { id: 
         <MetricCard label="Interviewing" value={requisition.applications.filter((item) => item.stage === "INTERVIEWING").length} detail="Structured scorecard loop" tone="emerald" />
       </div>
       <Card title="Application kanban" description="Cards expose only legal role actions. Every move is validated again by the server-side state machine.">
-        <div className="flex gap-4 overflow-x-auto p-4 scrollbar-thin">
-          {columns.map((stage) => {
-            const applications = requisition.applications.filter((item) => item.stage === stage);
-            return (
-              <div key={stage} className="w-72 shrink-0 rounded-xl bg-slate-100 p-3">
-                <div className="mb-3 flex items-center justify-between"><StageBadge stage={stage} /><span className="rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-500">{applications.length}</span></div>
-                <div className="space-y-3">
-                  {applications.map((application) => {
-                    const target =
-                      user.role === Role.RECRUITER && stage === "MATCHED" ? "RECRUITER_SCREEN" :
-                      user.role === Role.RECRUITER && stage === "RECRUITER_SCREEN" ? "HM_REVIEW" :
-                      user.role === Role.HIRING_MANAGER && stage === "HM_REVIEW" ? "INTERVIEWING" :
-                      null;
-                    return (
-                      <article key={application.id} draggable={Boolean(target)} className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-                        <Link href={`/candidates/${application.candidateId}`} className="font-semibold text-slate-900 hover:text-blue-700">{application.candidate.fullName}</Link>
-                        <div className="mt-1 text-xs text-slate-500">{application.candidate.location}</div>
-                        <div className="mt-3 flex items-center justify-between"><SlaChip enteredAt={application.stageEnteredAt} /><TimeInStage enteredAt={application.stageEnteredAt} /></div>
-                        {target && (
-                          <form action={transitionApplication} className="mt-3">
-                            <input type="hidden" name="applicationId" value={application.id} />
-                            <input type="hidden" name="candidateId" value={application.candidateId} />
-                            <input type="hidden" name="target" value={target} />
-                            <input type="hidden" name="reason" value={`Advanced from ${requisition.code} kanban.`} />
-                            <button className="w-full rounded-lg border border-blue-200 bg-blue-50 px-2 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-100">Advance to {target.replaceAll("_", " ")}</button>
-                          </form>
-                        )}
-                      </article>
-                    );
-                  })}
-                  {applications.length === 0 && <div className="rounded-lg border border-dashed border-slate-300 p-5 text-center text-xs text-slate-400">No candidates</div>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <RequisitionKanban
+          role={user.role}
+          requisitionCode={requisition.code}
+          applications={requisition.applications.map((application) => ({
+            id: application.id,
+            candidateId: application.candidateId,
+            stage: application.stage,
+            stageEnteredAt: application.stageEnteredAt.toISOString(),
+            candidate: {
+              fullName: application.candidate.fullName,
+              location: application.candidate.location,
+            },
+          }))}
+        />
       </Card>
     </>
   );
